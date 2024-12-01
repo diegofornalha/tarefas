@@ -2,8 +2,8 @@
   import { onMount } from "svelte";
   import Router, { push } from "svelte-spa-router";
   import { wrap } from "svelte-spa-router/wrap";
-  import SpeedInsights from "@vercel/speed-insights/svelte";
-  import Analytics from "@vercel/analytics/svelte";
+  import va from "@vercel/analytics";
+  import { SpeedInsights } from "@vercel/speed-insights/svelte";
 
   import { state } from "./store";
   import { sdk } from "./appwrite";
@@ -37,11 +37,13 @@
         push("/todos");
       }
     }
+
+    // Inicialize o Analytics
+    va.inject();
   });
 </script>
 
 <SvelteEasyToast />
 <Alert />
 <Router {routes} on:conditionsFailed={() => push("/")} />
-<Analytics />
 <SpeedInsights />
