@@ -1,4 +1,10 @@
 /// <reference types="svelte" />
 /// <reference types="vite/client" />
-/// <reference types="@vercel/speed-insights/svelte" />
-/// <reference types="@vercel/analytics/svelte" />
+
+declare module "*.svg" {
+  const content: any;
+  export default content;
+}
+
+declare module "svelte-easy-toast";
+declare module "@vercel/analytics";
