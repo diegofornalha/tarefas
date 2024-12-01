@@ -2,7 +2,9 @@ const sveltePreprocess = require("svelte-preprocess");
 
 module.exports = {
   preprocess: sveltePreprocess({
-    typescript: true,
+    typescript: {
+      tsconfigFile: "./tsconfig.json",
+    },
     postcss: true,
   }),
 };
