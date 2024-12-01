@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import Router, { push } from "svelte-spa-router";
   import { wrap } from "svelte-spa-router/wrap";
+  import { inject } from "@vercel/speed-insights";
 
   import { state } from "./store";
   import { sdk } from "./appwrite";
@@ -18,8 +19,8 @@
     "/login": Login,
     "/signup": SignUp,
     "/todos": wrap({
-       component: Todo as any,
-       conditions: [() => !!$state.account]
+      component: Todo as any,
+      conditions: [() => !!$state.account],
     }),
     "*": Landing,
   };
@@ -36,6 +37,9 @@
       }
     }
   });
+
+  // Inicialize o Speed Insights
+  inject();
 </script>
 
 <SvelteEasyToast />
